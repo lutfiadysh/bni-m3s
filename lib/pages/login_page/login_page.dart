@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             SizedBox(
-                              height: 85,
+                              height: MediaQuery.of(context).size.height/10,
                             ),
 
                             TextFormField(
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             SizedBox(
-                              height: 53,
+                              height: MediaQuery.of(context).size.height/11,
                             ),
 
                             Container(
@@ -165,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             SizedBox(
-                              height: 85,
+                              height: MediaQuery.of(context).size.height/10,
                             ),
 
                             Container(

@@ -1,3 +1,4 @@
+import 'package:bni/pages/operasional/installment/installment_page.dart';
 import 'package:bni/pages/operasional/live_chat/live_chat_page.dart';
 import 'package:bni/pages/operasional/ticketing/ticketing_page.dart';
 import 'package:bni/pages/owner/home_page/home_page_owner.dart';
@@ -45,7 +46,9 @@ class _HomePageState extends State<HomePage> {
             (widget.role == "operasional") ?
             HomePageWidget() : (widget.role == "owner") ?
             OwnerHomePage() : Container(),
-            (widget.role == "owner") ? LiveChatPage() : Container(),
+
+            (widget.role == "owner") ? LiveChatPage() : InstallmentPage(),
+
             (widget.role == "operasional") ?
             TicketingPage() : RequestEdcPage(),
           ],
@@ -70,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           ),
           (widget.role == "operasional") ?
           BottomNavyBarItem(
-              title: Text('LIVE CHAT',
+              title: Text('INSTALLMENT',
                 style: primaryTextTheme.copyWith(fontSize: 15),
               ),
               icon: Icon(EvilIcons.comment,
