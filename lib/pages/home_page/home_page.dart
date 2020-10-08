@@ -1,5 +1,5 @@
 import 'package:bni/pages/operasional/installment/installment_page.dart';
-import 'package:bni/pages/operasional/live_chat/live_chat_page.dart';
+import 'package:bni/pages/owner/live_chat/live_chat_page.dart';
 import 'package:bni/pages/operasional/ticketing/ticketing_page.dart';
 import 'package:bni/pages/owner/home_page/home_page_owner.dart';
 import 'package:bni/pages/operasional/home_page/home_page_widget.dart';
@@ -81,7 +81,16 @@ class _HomePageState extends State<HomePage> {
               ),
               activeColor: pGreen,
               inactiveColor: sGrey
-          ) : "",
+          ) : BottomNavyBarItem(
+              title: Text('INSTALLMENT',
+                style: primaryTextTheme.copyWith(fontSize: 15),
+              ),
+              icon: Icon(EvilIcons.comment,
+                size: 30,
+              ),
+              activeColor: pGreen,
+              inactiveColor: sGrey
+          ),
           (widget.role == "operasional") ?
           BottomNavyBarItem(
               title: Text('TICKETING',

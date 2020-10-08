@@ -32,6 +32,7 @@ class _InstallmentPageState extends State<InstallmentPage> {
 
             //NOTE : LIST VIEW
             Container(
+              height: MediaQuery.of(context).size.height/1.4,
               child: ListView(
                 shrinkWrap: true,
                 children: [
