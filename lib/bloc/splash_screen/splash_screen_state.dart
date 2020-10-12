@@ -23,4 +23,12 @@ class OnHomepage extends SplashScreenState {
   OnHomepage(this.role);
 }
 
+class OnDetailInstallmentPage extends SplashScreenState {
+  final String merchant_name;
+  final String date;
+  final String merchant_id;
+  final String status;
+  OnDetailInstallmentPage({this.merchant_name, this.date, this.merchant_id, this.status});
+}
+
 class OnOwnerHomePage extends SplashScreenState {}

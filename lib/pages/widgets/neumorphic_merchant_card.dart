@@ -12,7 +12,7 @@ class NeumorphicMerchantCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 120,
       width: MediaQuery.of(context).size.width-2*24,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),

@@ -18,4 +18,10 @@ class NavigateToHomePageEvent extends SplashScreenEvent {
   NavigateToHomePageEvent(this.role);
 }
 
-class NavigateToOwnerHomePageEvent extends SplashScreenEvent {}
+class NavigateToDetailInstallmentEvent extends SplashScreenEvent {
+  final String merchant_name;
+  final String date;
+  final String merchant_id;
+  final String status;
+  NavigateToDetailInstallmentEvent({this.merchant_name, this.date, this.merchant_id, this.status});
+}

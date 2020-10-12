@@ -1,4 +1,5 @@
 import 'package:bni/bloc/splash_screen/splash_screen_bloc.dart';
+import 'package:bni/pages/operasional/installment/installment_detail_page.dart';
 import 'package:bni/pages/owner/home_page/home_page_owner.dart';
 import 'package:bni/pages/login_page/login_page.dart';
 import 'package:bni/pages/home_page/home_page.dart';
@@ -45,6 +46,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 return HomePage(role:state.role);
               } else if (state is OnOwnerHomePage){
                 return OwnerHomePage();
+              } else if (state is OnDetailInstallmentPage){
+                return InstallmentDetailPage();
               }
             },
           ),

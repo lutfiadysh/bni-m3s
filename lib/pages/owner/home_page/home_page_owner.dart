@@ -1,7 +1,10 @@
+import 'package:bni/bloc/splash_screen/splash_screen_bloc.dart';
+import 'package:bni/pages/owner/ticketing/ticketing_page.dart';
 import 'package:bni/pages/widgets/neumorphic_merchant_card.dart';
 import 'package:bni/themes/colors.dart';
 import 'package:bni/themes/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OwnerHomePage extends StatefulWidget {
   @override
@@ -14,7 +17,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
     return Scaffold(
       bottomNavigationBar: Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/8),
-        height: 140,
+        height: 100,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.blue
@@ -53,7 +56,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
                         SizedBox(
                           height: 45,
                         ),
-                        Text('Lutfi Ardiansyah',
+                        Text('OWNER KC CAWANG',
                           style: primaryTextTheme.copyWith(
                               fontWeight: FontWeight.w300,
                               fontSize: 25,
@@ -75,13 +78,18 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/Accountplaceholder.png"),
-                          fit: BoxFit.cover
+                  GestureDetector(
+                    onTap: (){
+                      context.bloc<SplashScreenBloc>().add(NavigateToSigninPageEvent());
+                    },
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/Accountplaceholder.png"),
+                            fit: BoxFit.cover
+                        ),
                       ),
                     ),
                   ),
@@ -90,7 +98,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
             ),
 
             SizedBox(
-              height: MediaQuery.of(context).size.height/10,
+              height: MediaQuery.of(context).size.height/20,
             ),
 
             NeumorphicMerchantCard(
@@ -110,6 +118,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
               Status: "IN-ACTIVE",
               status_color: pOrange,
             ),
+
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bni/models/installment.dart';
 import 'package:meta/meta.dart';
 
 part 'splash_screen_event.dart';
@@ -27,8 +28,8 @@ class SplashScreenBloc extends Bloc<SplashScreenEvent, SplashScreenState> {
       yield OnLandingPage();
     } else if (event is NavigateToHomePageEvent){
       yield OnHomepage(event.role);
-    } else if (event is NavigateToOwnerHomePageEvent){
-      yield OnOwnerHomePage();
+    } else if (event is NavigateToDetailInstallmentEvent){
+      yield OnDetailInstallmentPage(merchant_name: event.merchant_name,status: event.status,merchant_id: event.merchant_id,date: event.date);
     }
   }
 }

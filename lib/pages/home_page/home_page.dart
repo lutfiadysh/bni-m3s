@@ -1,9 +1,12 @@
 import 'package:bni/pages/operasional/installment/installment_page.dart';
+import 'package:bni/pages/operasional/live_chat/live_chat.dart';
+import 'package:bni/pages/operasional/preventive_maintenance/pm_page.dart';
 import 'package:bni/pages/owner/live_chat/live_chat_page.dart';
-import 'package:bni/pages/operasional/ticketing/ticketing_page.dart';
+import 'package:bni/pages/owner/ticketing/ticketing_page.dart';
 import 'package:bni/pages/owner/home_page/home_page_owner.dart';
 import 'package:bni/pages/operasional/home_page/home_page_widget.dart';
 import 'package:bni/pages/owner/request_edc/request_edc.dart';
+import 'package:bni/pages/owner/ticketing/ticketing_page.dart';
 import 'package:bni/themes/colors.dart';
 import 'package:bni/themes/fonts.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
@@ -44,13 +47,15 @@ class _HomePageState extends State<HomePage> {
           },
           children: <Widget>[
             (widget.role == "operasional") ?
-            HomePageWidget() : (widget.role == "owner") ?
-            OwnerHomePage() : Container(),
+            HomePageWidget() : OwnerHomePage(),
 
             (widget.role == "owner") ? LiveChatPage() : InstallmentPage(),
 
             (widget.role == "operasional") ?
-            TicketingPage() : RequestEdcPage(),
+            PreventiveMaintenancePage() : RequestEdcPage(),
+
+            (widget.role == "owner") ?
+                TicketingPage() : LivechatOperasionalPage()
           ],
         ),
       ),
@@ -76,13 +81,13 @@ class _HomePageState extends State<HomePage> {
               title: Text('INSTALLMENT',
                 style: primaryTextTheme.copyWith(fontSize: 15),
               ),
-              icon: Icon(EvilIcons.comment,
+              icon: Icon(EvilIcons.bell,
                 size: 30,
               ),
               activeColor: pGreen,
               inactiveColor: sGrey
           ) : BottomNavyBarItem(
-              title: Text('INSTALLMENT',
+              title: Text('LIVE CHAT',
                 style: primaryTextTheme.copyWith(fontSize: 15),
               ),
               icon: Icon(EvilIcons.comment,
@@ -93,7 +98,7 @@ class _HomePageState extends State<HomePage> {
           ),
           (widget.role == "operasional") ?
           BottomNavyBarItem(
-              title: Text('TICKETING',
+              title: Text('PREVENTIVE MAINTENANCE',
                 style: primaryTextTheme.copyWith(fontSize: 15),
               ),
               icon: Icon(EvilIcons.envelope,
@@ -106,6 +111,27 @@ class _HomePageState extends State<HomePage> {
                 style: primaryTextTheme.copyWith(fontSize: 15),
               ),
               icon: Icon(EvilIcons.envelope,
+                size: 30,
+              ),
+              activeColor: pGreen,
+              inactiveColor: sGrey
+          ),
+
+          (widget.role == "owner") ?
+          BottomNavyBarItem(
+              title: Text('TICKETING',
+                style: primaryTextTheme.copyWith(fontSize: 15),
+              ),
+              icon: Icon(EvilIcons.envelope,
+                size: 30,
+              ),
+              activeColor: pGreen,
+              inactiveColor: sGrey
+          ) : BottomNavyBarItem(
+              title: Text('LIVE CHAT',
+                style: primaryTextTheme.copyWith(fontSize: 15),
+              ),
+              icon: Icon(EvilIcons.comment,
                 size: 30,
               ),
               activeColor: pGreen,

@@ -1,6 +1,10 @@
+import 'package:bni/bloc/splash_screen/splash_screen_bloc.dart';
+import 'package:bni/models/installment.dart';
+import 'package:bni/pages/operasional/installment/installment_detail_page.dart';
 import 'package:bni/pages/widgets/custom_appbar.dart';
 import 'package:bni/pages/widgets/neumorphic_card_request.dart';
 import 'package:bni/themes/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class InstallmentPage extends StatefulWidget {
@@ -24,77 +28,34 @@ class _InstallmentPageState extends State<InstallmentPage> {
         ],
       ),
       body: Container(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 34,
-            ),
-
-            //NOTE : LIST VIEW
-            Container(
-              height: MediaQuery.of(context).size.height/1.4,
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(24, 24, 24, 24),
-                    child: NeumorphicRequestCard(
-                      merchant_name: "TOKO HARAPAN",
-                      id: "0005",
-                      date: "07 September 2020",
-                      status_color: pGreen,
-                      status: "Belum Terpasang",
-                    ),
+        height: MediaQuery.of(context).size.height,
+        child: ListView.builder(
+            itemCount: Installment.getInstallment().length,
+            itemBuilder: (context,index){
+              return GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => InstallmentDetailPage(
+                      merchant_name: Installment.getInstallment()[index].merchant_name,
+                      merchant_id: Installment.getInstallment()[index].date+"-"+Installment.getInstallment()[index].id,
+                      date: Installment.getInstallment()[index].date,
+                      status: Installment.getInstallment()[index].status,
+                    )),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 20,left: 21,right: 27),
+                  child: NeumorphicRequestCard(
+                    merchant_name: Installment.getInstallment()[index].merchant_name,
+                    id: Installment.getInstallment()[index].id,
+                    status: Installment.getInstallment()[index].status,
+                    status_color: Installment.getInstallment()[index].status_color,
+                    date: Installment.getInstallment()[index].date,
                   ),
-
-                  Container(
-                    margin: EdgeInsets.fromLTRB(24, 24, 24, 24),
-                    child: NeumorphicRequestCard(
-                      merchant_name: "TOKO INDAH",
-                      id: "0004",
-                      date: "03 September 2020",
-                      status_color: pGreen,
-                      status: "Terpasang",
-                    ),
-                  ),
-
-                  Container(
-                    margin: EdgeInsets.fromLTRB(24, 24, 24, 24),
-                    child: NeumorphicRequestCard(
-                      merchant_name: "TOKO MAJU BERSAMA",
-                      id: "0003",
-                      date: "29 August 2020",
-                      status_color: pGreen,
-                      status: "Terpasang",
-                    ),
-                  ),
-
-                  Container(
-                    margin: EdgeInsets.fromLTRB(24, 24, 24, 24),
-                    child: NeumorphicRequestCard(
-                      merchant_name: "TOKO TJOKO",
-                      id: "0001",
-                      status_color: pOrange,
-                      date: "15 August 2020",
-                      status: "Belum Dikerjakan",
-                    ),
-                  ),
-
-                  Container(
-                    margin: EdgeInsets.fromLTRB(24, 24, 24, 24),
-                    child: NeumorphicRequestCard(
-                      merchant_name: "TOKO ANEMERE",
-                      id: "0002",
-                      date: "03 August 2020",
-                      status_color: pOrange,
-                      status: "Belum terpasang",
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+                ),
+              );
+            }),
       ),
     );
   }

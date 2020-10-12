@@ -1,6 +1,9 @@
+import 'package:bni/bloc/splash_screen/splash_screen_bloc.dart';
+import 'package:bni/pages/operasional/preventive_maintenance/pm_page.dart';
 import 'package:bni/themes/colors.dart';
 import 'package:bni/themes/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePageWidget extends StatefulWidget {
   @override
@@ -11,6 +14,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Container(
+        height: 100,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            color: Colors.blue
+        ),
+        child: Center(
+          child: Text("ADS HERE"),
+        ),
+      ),
       backgroundColor: pGrey,
       body: SafeArea(
         child: Column(
@@ -62,13 +75,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/Accountplaceholder.png"),
-                          fit: BoxFit.cover
+                  GestureDetector(
+                    onTap: (){
+                      context.bloc<SplashScreenBloc>().add(NavigateToSigninPageEvent());
+                    },
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/Accountplaceholder.png"),
+                            fit: BoxFit.cover
+                        ),
                       ),
                     ),
                   ),
@@ -268,7 +286,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
               ),
             ),
-
 
           ],
         ),

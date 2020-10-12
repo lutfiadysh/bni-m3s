@@ -13,7 +13,7 @@ class NeumorphicRequestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 110,
       width: MediaQuery.of(context).size.width-2*24,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),

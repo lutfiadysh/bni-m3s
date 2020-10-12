@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Container(
               height: MediaQuery.of(context).size.height,
-              child: Column(
+              child: ListView(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             SizedBox(
-                              height: MediaQuery.of(context).size.height/11,
+                              height: MediaQuery.of(context).size.height/20,
                             ),
 
                             Container(
@@ -165,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             SizedBox(
-                              height: MediaQuery.of(context).size.height/10,
+                              height: MediaQuery.of(context).size.height/40,
                             ),
 
                             Container(
@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             SizedBox(
-                              height: 24,
+                              height: 10,
                             ),
 
                             MaterialButton(

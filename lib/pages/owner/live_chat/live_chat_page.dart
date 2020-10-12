@@ -1,3 +1,5 @@
+import 'package:bni/models/live_chat.dart';
+import 'package:bni/pages/owner/live_chat/live_chat_detail.dart';
 import 'package:bni/pages/widgets/live_chat_appbar.dart';
 import 'package:bni/pages/widgets/neumorphic_chat_card.dart';
 import 'package:bni/themes/colors.dart';
@@ -28,37 +30,35 @@ class _LiveChatPageState extends State<LiveChatPage> {
       body: Container(
         child: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             Container(
               height: MediaQuery.of(context).size.height/2,
-              child: ListView(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        top: 38,
-                        left: 20,
-                        right: 28
-                      ),
-                      child: NeumorphicChatCard(
-                        name: "Merchant 1",
-                        chat: "EDC MACHINE IS NOT WORKING",
-                        status: "Read",
-                      ),
-                  ),
-
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: 38,
-                        left: 20,
-                        right: 28
-                    ),
-                    child: NeumorphicChatCard(
-                      name: "Merchant 2",
-                      chat: "EDC MACHINE IS NOT WORKING",
-                      status: "New",
-                    ),
-                  ),
-                ],
-              ),
+              child: ListView.builder(
+                  itemCount: Livechat.getLivechat().length,
+                  itemBuilder: (context,index){
+                   return Container(
+                     margin: EdgeInsets.all(15),
+                     child: GestureDetector(
+                       onTap: (){
+                         Navigator.push(
+                           context,
+                           MaterialPageRoute(builder: (context) => LiveChatDetail(
+                             chat_name: Livechat.getLivechat()[index].operator,
+                             status: Livechat.getLivechat()[index].status,
+                             chat: Livechat.getLivechat()[index].chat,
+                           )),
+                         );
+                       },
+                       child: NeumorphicChatCard(
+                         name: Livechat.getLivechat()[index].operator,
+                         chat: Livechat.getLivechat()[index].chat,
+                         status: Livechat.getLivechat()[index].status,
+                       ),
+                     ),
+                   );
+                  }),
             ),
             Container(
               child: Column(
@@ -92,33 +92,35 @@ class _LiveChatPageState extends State<LiveChatPage> {
                         ),
                       ],
                     ),
-                    child:  DropdownButtonHideUnderline(
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: SearchableDropdown.single(
-                          dialogBox:true,
-                          isExpanded:false,
-                          hint:
-                          Text(
-                            'Select Topic',
-                            style: primaryTextTheme.copyWith(
-                              fontSize: 15,
-                              color: pGrey,
-                            )
+                    child:  Center(
+                      child: DropdownButtonHideUnderline(
+                        child: ButtonTheme(
+                          alignedDropdown: true,
+                          child: SearchableDropdown.single(
+                            dialogBox:true,
+                            isExpanded:false,
+                            hint:
+                            Text(
+                              'Select Topic',
+                              style: primaryTextTheme.copyWith(
+                                fontSize: 15,
+                                color: pGrey,
+                              )
+                            ),
+                            items: Topic.getTopic().map((e){
+                              return DropdownMenuItem(
+                                child: Text(e.topic),
+                                value: e.topic,
+                              );
+                            }).toList(),
+                            value: _selectedTopic,
+                            searchHint: "Select one",
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedTopic = value;
+                              });
+                            },
                           ),
-                          items: Topic.getTopic().map((e){
-                            return DropdownMenuItem(
-                              child: Text(e.topic),
-                              value: e.topic,
-                            );
-                          }).toList(),
-                          value: _selectedTopic,
-                          searchHint: "Select one",
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedTopic = value;
-                            });
-                          },
                         ),
                       ),
                     ),
@@ -169,4 +171,6 @@ class Topic {
       Topic(3,"EDC MACHINE RETURN ERROR")
     ];
   }
+
+
 }
